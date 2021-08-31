@@ -30,7 +30,7 @@
                     class="col-3 col-md-3 col-lg-3 bg-info ml-4 mt-4" style="text-decoration: none !important">
                     <h5 class="text-light ml-3 mt-3 text-bold">{{ $gallery->gallery_title }}</h5>
                     <div class="text-light mt-3 ml-4">
-                        <p class="">{{ $gallery->gallery_description }}
+                        <p class="">{!! $gallery->gallery_description !!}
                         </p>
                     </div>
                 </a>
