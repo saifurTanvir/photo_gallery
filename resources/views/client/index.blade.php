@@ -73,12 +73,15 @@
                             <td>{{ $client->client_gander }}</td>
                             <td>{{ $client->client_age }}</td>
                             <td>{{ $client->client_phone }}</td>
-                            <td><i data-toggle="tooltip" data-placement="bottom" title="Show Detail"
-                                    class="fas fa-info-circle"></i> <i data-toggle="tooltip" data-placement="bottom"
-                                    title="Edit" class="fas fa-edit"></i> <i data-toggle="tooltip"
-                                    data-placement="bottom" title="Delete" class="fas fa-trash-alt"></i> <i
-                                    data-toggle="tooltip" data-placement="bottom" title="Active/Inactive"
-                                    class="fas fa-toggle-on"></i></td>
+                            <td>
+                                <i data-toggle="tooltip" data-placement="bottom" title="Edit" class="fas fa-edit"></i>
+                                <a
+                                    href="{{ route('client.delete', [$client->client_id]) }}"><i
+                                        data-toggle="tooltip" data-placement="bottom" title="Delete"
+                                        class="fas fa-trash-alt"></i></a>
+                                <i data-toggle="tooltip" data-placement="bottom" title="Active/Inactive"
+                                    class="fas fa-toggle-on"></i>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

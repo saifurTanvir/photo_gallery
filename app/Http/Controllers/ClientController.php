@@ -18,7 +18,6 @@ class ClientController extends Controller
     }
 
     public function store(){
-        // dd(request()->all());
         $success = Client::create(request()->all());
 
         if($success){
@@ -27,5 +26,18 @@ class ClientController extends Controller
             return redirect()->route('client.index')->with('error', 'Failed to add client.');
 
         }
+    }
+
+    public function delete($client_id){
+        $success = Client::where('client_id', 1)
+      ->update(['client_status' => 0]);
+
+      if($success){
+            return redirect()->route('client.index')->with('success', 'Client deleted successfully.');
+        }else{
+            return redirect()->route('client.index')->with('error', 'Failed to delete client');
+
+        }
+
     }
 }
