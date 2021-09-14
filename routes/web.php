@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\Product\ProductController;
-
+use App\Http\Controllers\Product\ProductController; 
+use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ShopController;
 
 Route::get('/', function () {
     return view('welcome'); 
@@ -28,7 +30,7 @@ Route::get('/client/{id}/delete', [ClientController::class, 'delete'])->name('cl
 Route::get('/client/{client_id}/make_active', [ClientController::class, 'make_active'])->name('client.make_active');
 Route::get('/client/{client_id}/make_inactive', [ClientController::class, 'make_inactive'])->name('client.make_inactive');
 Route::get('/client/{client_id}/edit', [ClientController::class, 'edit'])->name('client.edit');
-Route::post('/client/{client_id}/update', [ClientController::class, 'update'])->name('client.update');
+Route::post('/client/{client_id}/update', [ClientController::class, 'update'])->name('client.update'); 
 
 // product
 Route::get('/product', [ProductController::class, 'index'])->name('product.index');
@@ -41,13 +43,34 @@ Route::get('/product/{product_id}/delete', [ProductController::class, 'delete'])
 Route::get('/product/{product_id}/make_active', [ProductController::class, 'make_active'])->name('product.make_active');
 Route::get('/product/{product_id}/make_inactive', [ProductController::class, 'make_inactive'])->name('product.make_inactive');
 
-//product_search
-// Route::post('/product/combined_search', [ProductController::class, 'combined_search'])->name('product.combinedSearch');
+// product_search
 Route::post('/product/search/product_name', [ProductController::class, 'searchByProductName'])->name('product.search.product_name');
 Route::post('/product/search/category', [ProductController::class, 'searchByCategory'])->name('product.search.category');
 Route::post('/product/search/subcategory', [ProductController::class, 'searchBySubcategory'])->name('product.search.subcategory');
 Route::post('/product/search/shop_name', [ProductController::class, 'searchByShopName'])->name('product.search.shop_name');
 
+// category
+Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
+Route::get('/category/{category_id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+Route::post('/category/{category_id}/update', [CategoryController::class, 'update'])->name('category.update');
+Route::get('/category/{category_id}/delete', [CategoryController::class, 'delete'])->name('category.delete');
+Route::get('/category/{category_id}/make_active', [CategoryController::class, 'make_active'])->name('category.make_active');
+Route::get('/category/{category_id}/make_inactive', [CategoryController::class, 'make_inactive'])->name('category.make_inactive');
+
+// subcategory
+Route::get('/subcategory', [SubcategoryController::class, 'index'])->name('subcategory.index');
+
+// shop
+Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
+Route::get('/shop/create', [ShopController::class, 'create'])->name('shop.create');
+Route::post('/shop/store', [ShopController::class, 'store'])->name('shop.store');
+Route::get('/shop/{shop_id}/edit', [ShopController::class, 'edit'])->name('shop.edit');
+Route::post('/shop/{shop_id}/update', [ShopController::class, 'update'])->name('shop.update');
+Route::get('/shop/{shop_id}/delete', [ShopController::class, 'delete'])->name('shop.delete');
+Route::get('/shop/{shop_id}/make_active', [ShopController::class, 'make_active'])->name('shop.make_active');
+Route::get('/shop/{shop_id}/make_inactive', [ShopController::class, 'make_inactive'])->name('shop.make_inactive');
 
 
 

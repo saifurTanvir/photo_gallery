@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
-use DB;
+use DB; 
 class ProductController extends Controller
 {
     public function index(){
