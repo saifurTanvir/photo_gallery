@@ -110,8 +110,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="">Product Images</label>
-                        <input type="file" name="file[]" multiple class="form-control">
+                        <label for="product_stock">Stock</label>
+                        <input type="number" name="product_stock" value="{{ old('product_stock') }}"
+                            class="form-control" placeholder="10">
                     </div>
 
                 </div>
@@ -166,6 +167,11 @@
                         <input type="text" name="product_manufacturer_name"
                             value="{{ old('product_manufacturer_name') }}" class="form-control"
                             placeholder="Arong">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Product Images</label>
+                        <input type="file" name="file[]" multiple class="form-control">
                     </div>
 
                 </div>

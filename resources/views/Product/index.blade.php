@@ -30,10 +30,11 @@
         <h2 class="mb-5 mt-3">Products</h2>
         <div class="row">
             <div class="col">
-                <a href="{{ route('product.create') }}" class="btn btn-info mb-3 ml-4">Add
+                <a href="{{ route('product.create') }}" class="btn btn-success mb-3">Add
                     Product</a>
 
-                <a href="{{ route('product.index') }}" class="btn btn-info mb-3 float-right">Home</a>
+                <a href="{{ route('product.index') }}"
+                    class="btn btn-success mb-3 float-right">Home</a>
             </div>
         </div>
         <div class="row no-gutters">
@@ -60,54 +61,125 @@
                 </div>
             @endif
 
-            <form action="{{ route('product.search') }}" method="post">
-                @csrf
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                        <div class="form-group ml-4">
-                            <select class="form-control" name="ref_shop_id">
-                                <option selected disabled value="">Select Shop</option>
-                                <option>Shop A</option>
-                                <option>Shop B</option>
-                                <option>Shop C</option>
-                                <option>Shop D</option>
-                            </select>
+            <div class="row my-3">
+                <div class="col">
+                    <form action="{{ route('product.search.product_name') }}" method="post">
+                        @csrf
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <select class="form-control" name="ref_shop_id">
+                                    <option selected disabled value="">Select Shop</option>
+                                    <option>Shop A</option>
+                                    <option>Shop B</option>
+                                    <option>Shop C</option>
+                                    <option>Shop D</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                        <div class="form-group ml-4">
-                            <select class="form-control" name="ref_category_id">
-                                <option selected disabled value="">Select Category</option>
-                                <option>Category A</option>
-                                <option>Category B</option>
-                                <option>Category C</option>
-                            </select>
+                        <button class="btn btn-info btn-block">Search by Shopname</button>
+                    </form>
+                </div>
+                <div class="col">
+                    <form action="{{ route('product.search.category') }}" method="post">
+                        @csrf
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <select class="form-control" name="ref_category_id">
+                                    <option selected disabled value="">Select Category</option>
+                                    @foreach($categories AS $category)
+                                        <option value="{{ $category->category_id }}">{{ $category->category_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                        <div class="form-group ml-4">
-                            <select class="form-control" name="ref_subcategory_id">
-                                <option selected disabled value="">Select Subcategory</option>
-                                <option>Subcategory A</option>
-                                <option>Subcategory B</option>
-                                <option>Subcategory C</option>
-                            </select>
+                        <button class="btn btn-info ml-3 btn-block">Search by Category</button>
+                    </form>
+                </div>
+                <div class="col">
+                    <form action="{{ route('product.search.subcategory') }}" method="post">
+                        @csrf
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <select class="form-control" name="ref_subcategory_id">
+                                    <option selected disabled value="">Select Subcategory</option>
+                                    @foreach($subcategories AS $subcategory)
+                                        <option value="{{ $subcategory->subcategory_id }}">
+                                            {{ $subcategory->subcategory_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                        <input type="text" name="product_name" class="form-control ml-4" placeholder="Search Product">
+                        <button class="btn btn-info ml-3 btn-block">Search by Subcategory</button>
+                    </form>
+                </div>
+                <div class="col">
+                    <form action="{{ route('product.search.product_name') }}" method="post">
+                        @csrf
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <input type="text" name="product_name" class="form-control"
+                                    placeholder="Search Product">
+                            </div>
+                        </div>
+                        <button class="btn btn-info ml-3 btn-block">Search by Product</button>
+                    </form>
+                </div>
+            </div>
+
+            {{-- <form action="{{ route('product.combinedSearch') }}"
+            method="post">
+            @csrf
+            <div class="row my-3">
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <select class="form-control" name="ref_shop_id">
+                            <option selected disabled value="">Select Shop</option>
+                            <option>Shop A</option>
+                            <option>Shop B</option>
+                            <option>Shop C</option>
+                            <option>Shop D</option>
+                        </select>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <button class="btn btn-block btn-success ml-4 mb-3">Search
-                            Product</button>
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group ml-4">
+                        <select class="form-control" name="ref_category_id">
+                            <option selected disabled value="">Select Category</option>
+                            @foreach($categories AS $category)
+                                <option value="{{ $category->category_id }}">{{ $category->category_name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
-            </form>
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group ml-4">
+                        <select class="form-control" name="ref_subcategory_id">
+                            <option selected disabled value="">Select Subcategory</option>
+                            @foreach($subcategories AS $subcategory)
+                                <option value="{{ $subcategory->subcategory_id }}">
+                                    {{ $subcategory->subcategory_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                    <input type="text" name="product_name" class="form-control ml-4" placeholder="Search Product">
+                </div>
 
-            <table class="table table-striped ml-4">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <button class="btn btn-block btn-info mb-3 form-control">Search Product</button>
+                </div>
+
+            </div>
+            </form> --}}
+
+
+
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Serial No</th>
@@ -144,8 +216,8 @@
                                     @endif
                                 @endforeach
                             </td>
-                            <td>{{ $product->product_quantity }}</td>
-                            <td>{{ $product->product_price }} $</td>
+                            <td>{{ $product->product_stock }}</td>
+                            <td>{{ $product->product_price }} @if($product->product_price)$ @endif</td>
                             <td>
                                 <a
                                     href="{{ route('product.show', [$product->product_id]) }}"><i
@@ -164,12 +236,12 @@
                                     <a href="{{ route('product.make_inactive', [$product->product_id]) }}"
                                         onclick="return confirm('Are you sure, you want inactive?')"><i
                                             data-toggle="tooltip" data-placement="bottom" title="make inactive"
-                                            class="fas fa-toggle-off"></i></a>
+                                            class="fas fa-toggle-on"></i></a>
                                 @else
                                     <a href="{{ route('product.make_active', [$product->product_id]) }}"
                                         onclick="return confirm('Are you sure, you want active?')"><i
                                             data-toggle="tooltip" data-placement="bottom" title="make active"
-                                            class="fas fa-toggle-on"></i></a>
+                                            class="fas fa-toggle-off"></i></a>
                                 @endif
 
 

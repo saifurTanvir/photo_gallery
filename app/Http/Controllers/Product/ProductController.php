@@ -40,7 +40,8 @@ class ProductController extends Controller
             "product_expaire_date" => request()->input('product_expaire_date'),
             "product_quality" => request()->input('product_quality'),
             "product_manufacturer_name" => request()->input('product_manufacturer_name'),
-            "product_detail" => request()->input('product_detail')
+            "product_detail" => request()->input('product_detail'),
+            "product_stock" => request()->input('product_stock')
         );
         
         $success = Product::create($data);
@@ -140,7 +141,39 @@ class ProductController extends Controller
         }
     }
 
-    public function product_search(){
+    // public function combined_search(){
+    //     $products = Product::where('product_name', 'like', '%'.request()->product_name.'%')->orWhere('ref', 'like', '%'.request()->product_name.'%')->get();
+    //     $categories = Category::get();
+    //     $subcategories = Subcategory::get();
+
+    //     return view('product.index', compact('products', 'categories', 'subcategories'));
+    // }
+
+    public function searchByProductName(){
+        $products = Product::where('product_name', 'like', '%'.request()->product_name.'%')->get();
+        $categories = Category::get();
+        $subcategories = Subcategory::get();
+
+        return view('product.index', compact('products', 'categories', 'subcategories'));
+    }
+
+    public function searchByCategory(){
+        $products = Product::where('ref_category_id', 'like', '%'.request()->ref_category_id.'%')->get();
+        $categories = Category::get();
+        $subcategories = Subcategory::get();
+        
+        return view('product.index', compact('products', 'categories', 'subcategories'));
+    }
+
+    public function searchBySubcategory(){
+        $products = Product::where('ref_subcategory_id', 'like', '%'.request()->ref_subcategory_id.'%')->get();
+        $categories = Category::get();
+        $subcategories = Subcategory::get();
+        
+        return view('product.index', compact('products', 'categories', 'subcategories'));
+    }
+
+    public function searchByShopName(){
         dd(request()->all());
     }
 

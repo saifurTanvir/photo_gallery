@@ -25,6 +25,10 @@ Route::get('/client', [ClientController::class, 'index'])->name('client.index');
 Route::get('/client/create', [ClientController::class, 'create'])->name('client.create');
 Route::post('/client/store', [ClientController::class, 'store'])->name('client.store');
 Route::get('/client/{id}/delete', [ClientController::class, 'delete'])->name('client.delete');
+Route::get('/client/{client_id}/make_active', [ClientController::class, 'make_active'])->name('client.make_active');
+Route::get('/client/{client_id}/make_inactive', [ClientController::class, 'make_inactive'])->name('client.make_inactive');
+Route::get('/client/{client_id}/edit', [ClientController::class, 'edit'])->name('client.edit');
+Route::post('/client/{client_id}/update', [ClientController::class, 'update'])->name('client.update');
 
 // product
 Route::get('/product', [ProductController::class, 'index'])->name('product.index');
@@ -36,7 +40,13 @@ Route::get('/product/{product_id}/show', [ProductController::class, 'show'])->na
 Route::get('/product/{product_id}/delete', [ProductController::class, 'delete'])->name('product.delete');
 Route::get('/product/{product_id}/make_active', [ProductController::class, 'make_active'])->name('product.make_active');
 Route::get('/product/{product_id}/make_inactive', [ProductController::class, 'make_inactive'])->name('product.make_inactive');
-Route::post('/product/search', [ProductController::class, 'product_search'])->name('product.search');
+
+//product_search
+// Route::post('/product/combined_search', [ProductController::class, 'combined_search'])->name('product.combinedSearch');
+Route::post('/product/search/product_name', [ProductController::class, 'searchByProductName'])->name('product.search.product_name');
+Route::post('/product/search/category', [ProductController::class, 'searchByCategory'])->name('product.search.category');
+Route::post('/product/search/subcategory', [ProductController::class, 'searchBySubcategory'])->name('product.search.subcategory');
+Route::post('/product/search/shop_name', [ProductController::class, 'searchByShopName'])->name('product.search.shop_name');
 
 
 

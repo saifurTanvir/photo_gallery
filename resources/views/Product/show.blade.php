@@ -120,6 +120,11 @@
 
                         </tr>
                         <tr>
+                            <th>Stock</th>
+                            <td>{{ $product->product_stock }}</td>
+
+                        </tr>
+                        <tr>
                             <th>Creation Date</th>
                             <td>{{ $product->product_creation_date }}</td>
 

@@ -17,15 +17,23 @@
 
 <body>
 
+    <style>
+        a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+    </style>
+
 
     <div class="container">
         <h2 class="mb-5 mt-3">Clients</h2>
         <div class="row">
             <div class="col">
-                <a href="{{ route('client.create') }}" class="btn btn-secondary mb-3 ml-4">Add
+                <a href="{{ route('client.create') }}" class="btn btn-info mb-3 ml-4">Add
                     Client</a>
 
-                <a href="#" class="btn btn-secondary mb-3 float-right">Logout</a>
+                <a href="#" class="btn btn-info mb-3 float-right">Back</a>
             </div>
         </div>
         <div class="row no-gutters">
@@ -74,13 +82,27 @@
                             <td>{{ $client->client_age }}</td>
                             <td>{{ $client->client_phone }}</td>
                             <td>
-                                <i data-toggle="tooltip" data-placement="bottom" title="Edit" class="fas fa-edit"></i>
                                 <a
-                                    href="{{ route('client.delete', [$client->client_id]) }}"><i
+                                    href="{{ route('client.edit', [$client->client_id]) }}">
+                                    <i data-toggle="tooltip" data-placement="bottom" title="Edit"
+                                        class="fas fa-edit"></i>
+                                </a>
+
+                                <a href="{{ route('client.delete', [$client->client_id]) }}"
+                                    onclick="return confirm('Are you sure, you want to delete this client?')"><i
                                         data-toggle="tooltip" data-placement="bottom" title="Delete"
                                         class="fas fa-trash-alt"></i></a>
-                                <i data-toggle="tooltip" data-placement="bottom" title="Active/Inactive"
-                                    class="fas fa-toggle-on"></i>
+                                @if($client->client_status)
+                                    <a href="{{ route('client.make_inactive', [$client->client_id]) }}"
+                                        onclick="return confirm('Are you sure, you want inactive?')"><i
+                                            data-toggle="tooltip" data-placement="bottom" title="make inactive"
+                                            class="fas fa-toggle-on"></i></a>
+                                @else
+                                    <a href="{{ route('client.make_active', [$client->client_id]) }}"
+                                        onclick="return confirm('Are you sure, you want active?')"><i
+                                            data-toggle="tooltip" data-placement="bottom" title="make active"
+                                            class="fas fa-toggle-off"></i></a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
