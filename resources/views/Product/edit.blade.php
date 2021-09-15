@@ -66,12 +66,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="ref_category_id">Category</label>
-                        <select class="form-control" name="ref_category_id">
-                            @foreach($categories as $category)
-                                <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
+                        <label for="ref_shop_id">Shop Name</label>
+                        <select class="form-control" name="ref_shop_id">
+                            <option disabled>Select Shop</option>
+                            @foreach($shops as $shop)
+                                <option value="{{ $shop->shop_id }}" @if($shop->shop_id ==
+                                    $product->ref_shop_id) selected @endif>{{ $shop->shop_name }}
+                                </option>
                             @endforeach
-                            <option disabled>Select</option>
 
                         </select>
                     </div>
@@ -117,11 +119,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="ref_subcategory_id">Subcategory</label>
-                        <select class="form-control" name="ref_subcategory_id">
-                            @foreach($subcategories as $subcategory)
-                                <option value="{{ $subcategory->subcategory_id }}">
-                                    {{ $subcategory->subcategory_name }}</option>
+                        <label for="ref_category_id">Category</label>
+                        <select class="form-control" name="ref_category_id">
+                            <option disabled>Select Category</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->category_id }}" @if($category->category_id ==
+                                    $product->ref_category_id) selected @endif>{{ $category->category_name }}
+                                </option>
                             @endforeach
 
                         </select>

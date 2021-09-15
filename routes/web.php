@@ -8,6 +8,7 @@ use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\CompanyManageController;
 
 Route::get('/', function () {
     return view('welcome'); 
@@ -36,7 +37,7 @@ Route::post('/client/{client_id}/update', [ClientController::class, 'update'])->
 Route::get('/product', [ProductController::class, 'index'])->name('product.index');
 Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
 Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
-Route::get('/product/{product_id}/edit', [ProductController::class, 'edit'])->name('product.edit');
+Route::get('/product/{company_id}/{product_id}/edit', [ProductController::class, 'edit'])->name('product.edit');
 Route::post('/product/{product_id}/update', [ProductController::class, 'update'])->name('product.update');
 Route::get('/product/{product_id}/show', [ProductController::class, 'show'])->name('product.show');
 Route::get('/product/{product_id}/delete', [ProductController::class, 'delete'])->name('product.delete');
@@ -71,6 +72,12 @@ Route::post('/shop/{shop_id}/update', [ShopController::class, 'update'])->name('
 Route::get('/shop/{shop_id}/delete', [ShopController::class, 'delete'])->name('shop.delete');
 Route::get('/shop/{shop_id}/make_active', [ShopController::class, 'make_active'])->name('shop.make_active');
 Route::get('/shop/{shop_id}/make_inactive', [ShopController::class, 'make_inactive'])->name('shop.make_inactive');
+
+// company_control
+Route::get('/company/{company_id}/index', [CompanyManageController::class, 'index'])->name('company.manage.index');
+Route::get('/company/{company_id}/shop/{shop_id}/products', [CompanyManageController::class, 'product_list_by_shop_name'])->name('product_list_by_shop_name');
+Route::get('/company/{company_id}/category/{category_id}/products', [CompanyManageController::class, 'product_list_by_category'])->name('product_list_by_category');
+Route::get('/company/{company_id}/products', [CompanyManageController::class, 'product_list_by_company'])->name('product_list_by_company');
 
 
 

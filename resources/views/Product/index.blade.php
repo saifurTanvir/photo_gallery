@@ -63,16 +63,15 @@
 
             <div class="row my-3">
                 <div class="col">
-                    <form action="{{ route('product.search.product_name') }}" method="post">
+                    <form action="{{ route('product.search.shop_name') }}" method="post">
                         @csrf
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="form-group">
                                 <select class="form-control" name="ref_shop_id">
                                     <option selected disabled value="">Select Shop</option>
-                                    <option>Shop A</option>
-                                    <option>Shop B</option>
-                                    <option>Shop C</option>
-                                    <option>Shop D</option>
+                                    @foreach($shops AS $shop)
+                                        <option value="{{ $shop->shop_id }}">{{ $shop->shop_name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -93,7 +92,7 @@
                                 </select>
                             </div>
                         </div>
-                        <button class="btn btn-info ml-3 btn-block">Search by Category</button>
+                        <button class="btn btn-info ml-3 btn-block">Search by Subcategory</button>
                     </form>
                 </div>
                 <div class="col">
@@ -101,11 +100,10 @@
                         @csrf
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="form-group">
-                                <select class="form-control" name="ref_subcategory_id">
+                                <select class="form-control" name="ref_parent_category_id">
                                     <option selected disabled value="">Select Subcategory</option>
-                                    @foreach($subcategories AS $subcategory)
-                                        <option value="{{ $subcategory->subcategory_id }}">
-                                            {{ $subcategory->subcategory_name }}
+                                    @foreach($categories AS $category)
+                                        <option value="{{ $category->category_id }}">{{ $category->category_name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -183,11 +181,12 @@
                 <thead>
                     <tr>
                         <th>Serial No</th>
-                        <th>Name</th>
+                        <th>Product Name</th>
+                        <th>Shop Name</th>
                         <th>Category</th>
-                        <th>Subcategory</th>
                         <th>Stock</th>
                         <th>Price</th>
+                        <th>Expire Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -196,6 +195,7 @@
                         <tr>
                             <td>{{ $key+1 }}</td>
                             <td>{{ $product->product_name }}</td>
+                            <td>{{ $product->shop->shop_name }}</td>
                             <td>
                                 @foreach($categories as $category)
                                     @if(
@@ -206,18 +206,9 @@
                                     @endif
                                 @endforeach
                             </td>
-                            <td>
-                                @foreach($subcategories as $subcategory)
-                                    @if(
-                                        $subcategory->subcategory_id == $product->ref_subcategory_id
-                                        )
-
-                                        {{ $subcategory->subcategory_name }}
-                                    @endif
-                                @endforeach
-                            </td>
                             <td>{{ $product->product_stock }}</td>
                             <td>{{ $product->product_price }} @if($product->product_price)$ @endif</td>
+                            <td>{{ $product->product_expaire_date }}</td>
                             <td>
                                 <a
                                     href="{{ route('product.show', [$product->product_id]) }}"><i

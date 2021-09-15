@@ -86,14 +86,14 @@
 
                         </tr>
                         <tr>
-                            <th>Subcategory</th>
+                            <th>Parent Category</th>
                             <td>
-                                @foreach($subcategories as $subcategory)
+                                @foreach($categories as $category)
                                     @if(
-                                        $subcategory->subcategory_id == $product->ref_subcategory_id
+                                        $category->category_id == $product->ref_parent_category_id
                                         )
 
-                                        {{ $subcategory->subcategory_name }}
+                                        {{ $category->category_name }}
                                     @endif
                                 @endforeach
                             </td>

@@ -53,7 +53,6 @@
             </div>
         @endif
 
-        {{-- <i class="fas fa-star-of-life fa-sm text-danger"></i> --}}
         <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
@@ -68,10 +67,10 @@
                     <div class="form-group">
                         <label for="ref_category_id">Category</label>
                         <select class="form-control" name="ref_category_id">
+                            <option disabled selected>Select Category</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
                             @endforeach
-                            <option disabled>Select</option>
 
                         </select>
                     </div>
@@ -97,7 +96,7 @@
 
                     <div class="form-group">
                         <label for="product_warranty">Warranty</label>
-                        <input type="text" name="product_warranty"
+                        <input type="date" name="product_warranty"
                             value="{{ old('product_warranty') }}" class="form-control"
                             placeholder="250">
                     </div>
@@ -125,17 +124,16 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="ref_subcategory_id">Subcategory</label>
-                        <select class="form-control" name="ref_subcategory_id">
-                            @foreach($subcategories as $subcategory)
-                                <option value="{{ $subcategory->subcategory_id }}">
-                                    {{ $subcategory->subcategory_name }}</option>
+                        <label for="ref_parent_category_id">Parent Category</label>
+                        <select class="form-control" name="ref_parent_category_id">
+                            <option disabled selected>Select Subcategory</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->category_id }}">
+                                    {{ $category->category_name }}</option>
                             @endforeach
 
                         </select>
                     </div>
-
-
 
                     <div class="form-group">
                         <label for="product_widht">Width(cm)</label>

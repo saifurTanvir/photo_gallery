@@ -53,7 +53,6 @@
             </div>
         @endif
 
-        {{-- <i class="fas fa-star-of-life fa-sm text-danger"></i> --}}
         <form action="{{ route('shop.update', $shop->shop_id) }}" method="post"
             enctype="multipart/form-data">
             @csrf
