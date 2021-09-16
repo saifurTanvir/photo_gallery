@@ -21,7 +21,7 @@ class Shop extends Model
     } 
 
     public function product(){
-        return $this->hasMany(Shop::class, 'ref_shop_id', 'shop_id');
+        return $this->hasMany(Product::class, 'ref_shop_id', 'shop_id');
     }
 
 }

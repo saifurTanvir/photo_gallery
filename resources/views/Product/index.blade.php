@@ -30,10 +30,11 @@
         <h2 class="mb-5 mt-3">Products</h2>
         <div class="row">
             <div class="col">
-                <a href="{{ route('product.create') }}" class="btn btn-success mb-3">Add
+                <a href="{{ route('product.create', $company->company_id) }}"
+                    class="btn btn-success mb-3">Add
                     Product</a>
 
-                <a href="{{ route('product.index') }}"
+                <a href="{{ route('product.index', $company->company_id) }}"
                     class="btn btn-success mb-3 float-right">Home</a>
             </div>
         </div>
@@ -63,13 +64,15 @@
 
             <div class="row my-3">
                 <div class="col">
-                    <form action="{{ route('product.search.shop_name') }}" method="post">
+                    <form
+                        action="{{ route('product.search.shop_name', $company->company_id) }}"
+                        method="post">
                         @csrf
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="form-group">
                                 <select class="form-control" name="ref_shop_id">
                                     <option selected disabled value="">Select Shop</option>
-                                    @foreach($shops AS $shop)
+                                    @foreach($company->shop AS $shop)
                                         <option value="{{ $shop->shop_id }}">{{ $shop->shop_name }}</option>
                                     @endforeach
                                 </select>
@@ -79,13 +82,15 @@
                     </form>
                 </div>
                 <div class="col">
-                    <form action="{{ route('product.search.category') }}" method="post">
+                    <form
+                        action="{{ route('product.search.category', $company->company_id) }}"
+                        method="post">
                         @csrf
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="form-group">
                                 <select class="form-control" name="ref_category_id">
                                     <option selected disabled value="">Select Category</option>
-                                    @foreach($categories AS $category)
+                                    @foreach($company->category AS $category)
                                         <option value="{{ $category->category_id }}">{{ $category->category_name }}
                                         </option>
                                     @endforeach
@@ -96,13 +101,15 @@
                     </form>
                 </div>
                 <div class="col">
-                    <form action="{{ route('product.search.subcategory') }}" method="post">
+                    <form
+                        action="{{ route('product.search.subcategory', $company->company_id) }}"
+                        method="post">
                         @csrf
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="form-group">
                                 <select class="form-control" name="ref_parent_category_id">
                                     <option selected disabled value="">Select Subcategory</option>
-                                    @foreach($categories AS $category)
+                                    @foreach($company->category AS $category)
                                         <option value="{{ $category->category_id }}">{{ $category->category_name }}
                                         </option>
                                     @endforeach
@@ -113,7 +120,9 @@
                     </form>
                 </div>
                 <div class="col">
-                    <form action="{{ route('product.search.product_name') }}" method="post">
+                    <form
+                        action="{{ route('product.search.product_name', $company->company_id) }}"
+                        method="post">
                         @csrf
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="form-group">
@@ -125,57 +134,6 @@
                     </form>
                 </div>
             </div>
-
-            {{-- <form action="{{ route('product.combinedSearch') }}"
-            method="post">
-            @csrf
-            <div class="row my-3">
-                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                    <div class="form-group">
-                        <select class="form-control" name="ref_shop_id">
-                            <option selected disabled value="">Select Shop</option>
-                            <option>Shop A</option>
-                            <option>Shop B</option>
-                            <option>Shop C</option>
-                            <option>Shop D</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                    <div class="form-group ml-4">
-                        <select class="form-control" name="ref_category_id">
-                            <option selected disabled value="">Select Category</option>
-                            @foreach($categories AS $category)
-                                <option value="{{ $category->category_id }}">{{ $category->category_name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                    <div class="form-group ml-4">
-                        <select class="form-control" name="ref_subcategory_id">
-                            <option selected disabled value="">Select Subcategory</option>
-                            @foreach($subcategories AS $subcategory)
-                                <option value="{{ $subcategory->subcategory_id }}">
-                                    {{ $subcategory->subcategory_name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                    <input type="text" name="product_name" class="form-control ml-4" placeholder="Search Product">
-                </div>
-
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <button class="btn btn-block btn-info mb-3 form-control">Search Product</button>
-                </div>
-
-            </div>
-            </form> --}}
-
-
 
             <table class="table table-striped">
                 <thead>
@@ -195,9 +153,9 @@
                         <tr>
                             <td>{{ $key+1 }}</td>
                             <td>{{ $product->product_name }}</td>
-                            <td>{{ $product->shop->shop_name }}</td>
+                            <td>{{ $product->shop->shop_name ?? '' }}</td>
                             <td>
-                                @foreach($categories as $category)
+                                @foreach($company->category as $category)
                                     @if(
                                         $category->category_id == $product->ref_category_id
                                         )
@@ -208,7 +166,7 @@
                             </td>
                             <td>{{ $product->product_stock }}</td>
                             <td>{{ $product->product_price }} @if($product->product_price)$ @endif</td>
-                            <td>{{ $product->product_expaire_date }}</td>
+                            <td>{{ $product->product_expire_date }}</td>
                             <td>
                                 <a
                                     href="{{ route('product.show', [$product->product_id]) }}"><i

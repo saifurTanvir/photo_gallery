@@ -25,8 +25,10 @@
         <h2 class="mb-5 mt-3">Add Product</h2>
 
         <div>
-            <a href="{{ route('product.index') }}" class="btn btn-success mb-3">Home</a>
-            <a href="{{ route('product.index') }}" class="btn btn-success mb-3 float-right">Back</a>
+            <a href="{{ route('product.index', $company->company_id) }}"
+                class="btn btn-success mb-3">Home</a>
+            <a href="{{ route('product.index', $company->company_id) }}"
+                class="btn btn-success mb-3 float-right">Back</a>
         </div>
 
 
@@ -53,7 +55,8 @@
             </div>
         @endif
 
-        <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('product.store', $company->company_id) }}" method="post"
+            enctype="multipart/form-data">
             @csrf
 
             <div class="row">
@@ -68,7 +71,7 @@
                         <label for="ref_category_id">Category</label>
                         <select class="form-control" name="ref_category_id">
                             <option disabled selected>Select Category</option>
-                            @foreach($categories as $category)
+                            @foreach($company->category as $category)
                                 <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
                             @endforeach
 
@@ -127,7 +130,7 @@
                         <label for="ref_parent_category_id">Parent Category</label>
                         <select class="form-control" name="ref_parent_category_id">
                             <option disabled selected>Select Subcategory</option>
-                            @foreach($categories as $category)
+                            @foreach($company->category as $category)
                                 <option value="{{ $category->category_id }}">
                                     {{ $category->category_name }}</option>
                             @endforeach
@@ -136,8 +139,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="product_widht">Width(cm)</label>
-                        <input type="number" name="product_widht" value="{{ old('product_widht') }}"
+                        <label for="product_width">Width(cm)</label>
+                        <input type="number" name="product_width" value="{{ old('product_width') }}"
                             class="form-control" placeholder="5.2">
                     </div>
 
@@ -148,9 +151,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="product_expaire_date">Expire Date</label>
-                        <input type="date" name="product_expaire_date"
-                            value="{{ old('product_expaire_date') }}" class="form-control"
+                        <label for="product_expire_date">Expire Date</label>
+                        <input type="date" name="product_expire_date"
+                            value="{{ old('product_expire_date') }}" class="form-control"
                             placeholder="31-12-23">
                     </div>
 
@@ -185,7 +188,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-info btn-block">Create</button>
+            <button type="submit" class="btn btn-info btn-block mb-3">Create</button>
         </form>
     </div>
 

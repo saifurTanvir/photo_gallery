@@ -25,8 +25,10 @@
         <h2 class="mb-5 mt-3">Show Product</h2>
 
         <div>
-            <a href="{{ route('product.index') }}" class="btn btn-success mb-3">Home</a>
-            <a href="{{ route('product.index') }}" class="btn btn-success mb-3 float-right">Back</a>
+            <a href="{{ route('product.index', $product->company->company_id) }}"
+                class="btn btn-success mb-3">Home</a>
+            <a href="{{ route('product.index', $product->company->company_id) }}"
+                class="btn btn-success mb-3 float-right">Back</a>
         </div>
 
 
@@ -74,7 +76,7 @@
                         <tr>
                             <th>Category</th>
                             <td>
-                                @foreach($categories as $category)
+                                @foreach($product->company->category as $category)
                                     @if(
                                         $category->category_id == $product->ref_category_id
                                         )
@@ -88,7 +90,7 @@
                         <tr>
                             <th>Parent Category</th>
                             <td>
-                                @foreach($categories as $category)
+                                @foreach($product->company->category as $category)
                                     @if(
                                         $category->category_id == $product->ref_parent_category_id
                                         )
@@ -131,7 +133,7 @@
                         </tr>
                         <tr>
                             <th>Expire Date</th>
-                            <td>{{ $product->product_expaire_date }}</td>
+                            <td>{{ $product->product_expire_date }}</td>
 
                         </tr>
                         <tr>
@@ -158,12 +160,12 @@
 
                 </table>
 
-                @if(count($product_images))
+                @if(count($product->productImage))
                     <h2 class="my-3 text-info">Product Images</h2>
                 @endif
 
                 <div class="row">
-                    @foreach($product_images AS $image)
+                    @foreach($product->productImage AS $image)
                         <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
                             <img src="{{ asset($image->attachment_url) }}" class="img-fluid" alt="images">
                         </div>
