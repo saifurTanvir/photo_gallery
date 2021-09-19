@@ -51,27 +51,27 @@ Route::post('/company/{company_id}/product/search/subcategory', [ProductControll
 Route::post('/company/{company_id}/product/search/shop_name', [ProductController::class, 'searchByShopName'])->name('product.search.shop_name');
 
 // category
-Route::get('/company/{company_id}/category', [CategoryController::class, 'index'])->name('category.index');
-Route::get('/company/{company_id}/category/create', [CategoryController::class, 'create'])->name('category.create');
-Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
-Route::get('/company/{company_id}/category/{category_id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
-Route::post('/company/{company_id}/category/{category_id}/update', [CategoryController::class, 'update'])->name('category.update');
-Route::get('/company/{company_id}/category/{category_id}/delete', [CategoryController::class, 'delete'])->name('category.delete');
-Route::get('/company/{company_id}/category/{category_id}/make_active', [CategoryController::class, 'make_active'])->name('category.make_active');
-Route::get('/company/{company_id}/category/{category_id}/make_inactive', [CategoryController::class, 'make_inactive'])->name('category.make_inactive');
+Route::get('category', [CategoryController::class, 'index'])->name('category.index');
+Route::get('category/create', [CategoryController::class, 'create'])->name('category.create');
+Route::post('category/store', [CategoryController::class, 'store'])->name('category.store');
+Route::get('category/{category_id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+Route::post('category/{category_id}/update', [CategoryController::class, 'update'])->name('category.update');
+Route::get('category/{category_id}/delete', [CategoryController::class, 'delete'])->name('category.delete');
+Route::get('category/{category_id}/make_active', [CategoryController::class, 'make_active'])->name('category.make_active');
+Route::get('category/{category_id}/make_inactive', [CategoryController::class, 'make_inactive'])->name('category.make_inactive');
 
 // subcategory
 Route::get('/subcategory', [SubcategoryController::class, 'index'])->name('subcategory.index');
 
 // shop
-Route::get('/company/{company_id}/shop', [ShopController::class, 'index'])->name('shop.index');
-Route::get('/company/{company_id}/shop/create', [ShopController::class, 'create'])->name('shop.create');
-Route::post('/company/{company_id}/shop/store', [ShopController::class, 'store'])->name('shop.store');
-Route::get('/company/{company_id}/shop/{shop_id}/edit', [ShopController::class, 'edit'])->name('shop.edit');
-Route::post('/company/{company_id}/shop/{shop_id}/update', [ShopController::class, 'update'])->name('shop.update');
-Route::get('/company/{company_id}/shop/{shop_id}/delete', [ShopController::class, 'delete'])->name('shop.delete');
-Route::get('/company/{company_id}/shop/{shop_id}/make_active', [ShopController::class, 'make_active'])->name('shop.make_active');
-Route::get('/company/{company_id}/shop/{shop_id}/make_inactive', [ShopController::class, 'make_inactive'])->name('shop.make_inactive');
+Route::get('shop', [ShopController::class, 'index'])->name('shop.index');
+Route::get('shop/create', [ShopController::class, 'create'])->name('shop.create');
+Route::post('shop/store', [ShopController::class, 'store'])->name('shop.store');
+Route::get('shop/{shop_id}/edit', [ShopController::class, 'edit'])->name('shop.edit');
+Route::post('shop/{shop_id}/update', [ShopController::class, 'update'])->name('shop.update');
+Route::get('shop/{shop_id}/delete', [ShopController::class, 'delete'])->name('shop.delete');
+Route::get('shop/{shop_id}/make_active', [ShopController::class, 'make_active'])->name('shop.make_active');
+Route::get('shop/{shop_id}/make_inactive', [ShopController::class, 'make_inactive'])->name('shop.make_inactive');
 
 // company_control
 Route::get('/company/{company_id}/index', [CompanyManageController::class, 'index'])->name('company.manage.index');
@@ -80,7 +80,7 @@ Route::get('/company/{company_id}/category/{category_id}/products', [CompanyMana
 Route::get('/company/{company_id}/products', [CompanyManageController::class, 'product_list_by_company'])->name('product_list_by_company');
 
 
-
+ 
 
 
 

@@ -70,7 +70,7 @@
                     <div class="form-group">
                         <label for="ref_shop_id">Shop Name</label>
                         <select class="form-control" name="ref_shop_id">
-                            <option disabled>Select Shop</option>
+                            <option selected disabled>Select Shop</option>
                             @foreach($product->company->shop as $shop)
                                 <option value="{{ $shop->shop_id }}" @if($shop->shop_id ==
                                     $product->ref_shop_id) selected @endif>{{ $shop->shop_name }}
@@ -124,7 +124,7 @@
                     <div class="form-group">
                         <label for="ref_category_id">Category</label>
                         <select class="form-control" name="ref_category_id">
-                            <option disabled>Select Category</option>
+                            <option selected disabled>Select Category</option>
                             @foreach($product->company->category as $category)
                                 <option value="{{ $category->category_id }}" @if($category->category_id ==
                                     $product->ref_category_id) selected @endif>{{ $category->category_name }}
