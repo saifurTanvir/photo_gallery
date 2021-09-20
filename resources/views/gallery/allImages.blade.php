@@ -48,7 +48,7 @@
                     <label for="title" class="text-bold">Write Description</label>
                     <input type="text" name="description" multiple class="form-control ml-3"
                         placeholder="description...">
-                </div>
+                </div> 
 
                 <div class="form-group ml-5">
                     <label for="file" class="text-bold">Upload photo</label>
@@ -63,7 +63,9 @@
             @foreach($images AS $image)
                 <div class="col-6 col-md-3 col-lg-3">
                     <figure>
-                        <img src="{{ asset($image->image_path) }}" alt="image" class="img-thumbnail mt-4">
+                        <a href="{{ route('gallery.image.show', $image->image_id) }}">
+                            <img src="{{ asset($image->image_path) }}" alt="image" class="img-thumbnail mt-4">
+                        </a>
                     </figure>
                 </div>
             @endforeach

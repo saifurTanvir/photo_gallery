@@ -10,7 +10,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CompanyManageController;
 
-Route::get('/', function () {
+Route::get('/', function () { 
     return view('welcome'); 
 });
 
@@ -22,6 +22,9 @@ Route::get('/gallery/{gallery_id}/allImages', [GalleryController::class, 'allIma
 Route::get('/gallery/create', [GalleryController::class, 'create'])->name('gallery.create');
 Route::post('/gallery/store', [GalleryController::class, 'store'])->name('gallery.store');
 Route::post('/gallery/{gallery_id}/image/store', [GalleryController::class, 'store_image'])->name('gallery.store_image');
+Route::get('/gallery/image/{image_id}/show', [GalleryController::class, 'image_show'])->name('gallery.image.show');
+Route::post('/gallery/image/{image_id}/update', [GalleryController::class, 'image_update'])->name('gallery.image.update');
+Route::post('/gallery/image/{image_id}/delete', [GalleryController::class, 'image_delete'])->name('gallery.image.delete');
 
 // client
 Route::get('/client', [ClientController::class, 'index'])->name('client.index');
@@ -60,7 +63,7 @@ Route::get('/company/{company_id}/category/{category_id}/delete', [CategoryContr
 Route::get('/company/{company_id}/category/{category_id}/make_active', [CategoryController::class, 'make_active'])->name('category.make_active');
 Route::get('/company/{company_id}/category/{category_id}/make_inactive', [CategoryController::class, 'make_inactive'])->name('category.make_inactive');
 
-// subcategory
+// subcategory 
 Route::get('/subcategory', [SubcategoryController::class, 'index'])->name('subcategory.index');
 
 // shop
