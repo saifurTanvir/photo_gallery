@@ -25,8 +25,10 @@
         <h2 class="mb-5 mt-3">Edit Shop</h2>
 
         <div>
-            <a href="{{ route('shop.index') }}" class="btn btn-success mb-3">Home</a>
-            <a href="{{ route('shop.index') }}" class="btn btn-success mb-3 float-right">Back</a>
+            <a href="{{ route('shop.index', $company_id) }}"
+                class="btn btn-success mb-3">Home</a>
+            <a href="{{ route('shop.index', $company_id) }}"
+                class="btn btn-success mb-3 float-right">Back</a>
         </div>
 
 
@@ -53,8 +55,8 @@
             </div>
         @endif
 
-        <form action="{{ route('shop.update', $shop->shop_id) }}" method="post"
-            enctype="multipart/form-data">
+        <form action="{{ route('shop.update', [$company_id, $shop->shop_id]) }}"
+            method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="row my-3">
@@ -99,8 +101,8 @@
                         <label for="shop_active">Shop Status</label>
                         <select class="form-control" name="shop_active">
                             <option disabled selected>Select Staus</option>
-                            <option value="1" @if($shop->shop_status == 1) selected @endif>Active</option>
-                            <option value="0" @if($shop->shop_status == 0) selected @endif>Inactive</option>
+                            <option value="1" @if($shop->shop_active == 1) selected @endif>Active</option>
+                            <option value="0" @if($shop->shop_active == 0) selected @endif>Inactive</option>
                         </select>
                     </div>
 

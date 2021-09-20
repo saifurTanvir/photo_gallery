@@ -13,6 +13,27 @@
 
 <body>
 
+    <style>
+        a,
+        span.link {
+            color: #000000;
+            text-decoration: none !important;
+        }
+
+        a:visited,
+        span.visited {
+            color: #000000;
+            text-decoration: none !important;
+        }
+
+        a:active,
+        span.active {
+            color: #000000;
+            text-decoration: none !important;
+        }
+
+    </style>
+
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <a class="navbar-brand mx-5" href="#">{{ $company->company_name }}</a>
 
@@ -54,18 +75,19 @@
         <h3>{{ $company->company_name }}</h3>
 
         <div class="card-deck my-3">
-            <div class="card bg-primary">
+            <a href="{{ route('shop.index', $company->company_id) }}" class="card bg-primary">
                 <div class="card-body text-center">
                     <h4 class="card-text text-bold">Total Number of Shop</h4>
                     <h2 class="card-text">{{ count($company->shop) }}</h2>
                 </div>
-            </div>
-            <div class="card bg-warning">
+            </a>
+            <a href="{{ route('category.index', $company->company_id) }}"
+                class="card bg-warning">
                 <div class="card-body text-center">
                     <h4 class="card-text">Total Number of Category</h4>
                     <h2 class="card-text">{{ count($company->category) }}</h2>
                 </div>
-            </div>
+            </a>
             <div class="card bg-info">
                 <div class="card-body text-center">
                     <h4 class="card-text">Total Number of Product</h4>

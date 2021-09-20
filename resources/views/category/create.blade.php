@@ -25,8 +25,10 @@
         <h2 class="mb-5 mt-3">Add Category</h2>
 
         <div>
-            <a href="{{ route('category.index') }}" class="btn btn-success mb-3">Home</a>
-            <a href="{{ route('category.index') }}" class="btn btn-success mb-3 float-right">Back</a>
+            <a href="{{ route('category.index', $company_id) }}"
+                class="btn btn-success mb-3">Home</a>
+            <a href="{{ route('category.index', $company_id) }}"
+                class="btn btn-success mb-3 float-right">Back</a>
         </div>
 
 
@@ -54,7 +56,8 @@
         @endif
 
         {{-- <i class="fas fa-star-of-life fa-sm text-danger"></i> --}}
-        <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('category.store', $company_id) }}" method="post"
+            enctype="multipart/form-data">
             @csrf
 
             <div class="row my-3">

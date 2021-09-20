@@ -97,7 +97,7 @@
                                 </select>
                             </div>
                         </div>
-                        <button class="btn btn-info ml-3 btn-block">Search by Subcategory</button>
+                        <button class="btn btn-info ml-3 btn-block">Search by Category</button>
                     </form>
                 </div>
                 <div class="col">

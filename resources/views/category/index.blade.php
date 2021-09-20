@@ -30,7 +30,8 @@
         <h2 class="mb-5 mt-3">Categories</h2>
         <div class="row">
             <div class="col">
-                <a href="{{ route('category.create') }}" class="btn btn-info mb-3 ml-4">Add
+                <a href="{{ route('category.create', $company_id) }}"
+                    class="btn btn-info mb-3 ml-4">Add
                     Category</a>
 
                 <a href="#" class="btn btn-info mb-3 float-right">Back</a>
@@ -85,22 +86,22 @@
                             <td>{{ $category->company->company_name }}</td>
                             <td>
                                 <a
-                                    href="{{ route('category.edit', $category->category_id) }}">
+                                    href="{{ route('category.edit', [$company_id, $category->category_id]) }}">
                                     <i data-toggle="tooltip" data-placement="bottom" title="Edit"
                                         class="fas fa-edit"></i>
                                 </a>
 
-                                <a href="{{ route('category.delete', $category->category_id) }}"
+                                <a href="{{ route('category.delete', [$company_id, $category->category_id]) }}"
                                     onclick="return confirm('Are you sure, you want to delete this client?')"><i
                                         data-toggle="tooltip" data-placement="bottom" title="Delete"
                                         class="fas fa-trash-alt"></i></a>
                                 @if($category->category_active)
-                                    <a href="{{ route('category.make_inactive', $category->category_id) }}"
+                                    <a href="{{ route('category.make_inactive', [$company_id, $category->category_id]) }}"
                                         onclick="return confirm('Are you sure, you want inactive?')"><i
                                             data-toggle="tooltip" data-placement="bottom" title="make inactive"
                                             class="fas fa-toggle-on"></i></a>
                                 @else
-                                    <a href="{{ route('category.make_active', $category->category_id) }}"
+                                    <a href="{{ route('category.make_active', [$company_id, $category->category_id]) }}"
                                         onclick="return confirm('Are you sure, you want active?')"><i
                                             data-toggle="tooltip" data-placement="bottom" title="make active"
                                             class="fas fa-toggle-off"></i></a>

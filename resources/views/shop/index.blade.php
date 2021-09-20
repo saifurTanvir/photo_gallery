@@ -30,7 +30,8 @@
         <h2 class="mb-5 mt-3">Shops</h2>
         <div class="row">
             <div class="col">
-                <a href="{{ route('shop.create') }}" class="btn btn-info mb-3 ml-4">Add
+                <a href="{{ route('shop.create', $company_id) }}"
+                    class="btn btn-info mb-3 ml-4">Add
                     Shop</a>
 
                 <a href="#" class="btn btn-info mb-3 float-right">Back</a>
@@ -63,12 +64,11 @@
             <table class="table table-striped ml-4">
                 <thead>
                     <tr>
-                        <th>Serial No</th>
+                        <th>Serial</th>
+                        <th>Company Name</th>
                         <th>Shop Name</th>
                         <th>Phone</th>
-                        <th>Email</th>
                         <th>Location</th>
-                        <th>Company Name</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -76,28 +76,28 @@
                     @foreach($shops AS $key => $shop)
                         <tr>
                             <td>{{ $key+1 }}</td>
+                            <td>{{ $shop->company->company_name }}</td>
                             <td>{{ $shop->shop_name }} </td>
                             <td>{{ $shop->shop_phone }} </td>
-                            <td>{{ $shop->shop_email }} </td>
                             <td>{{ $shop->shop_location }} </td>
-                            <td>{{ $shop->company->company_name }}</td>
                             <td>
-                                <a href="{{ route('shop.edit', $shop->shop_id) }}">
+                                <a
+                                    href="{{ route('shop.edit', [$company_id, $shop->shop_id]) }}">
                                     <i data-toggle="tooltip" data-placement="bottom" title="Edit"
                                         class="fas fa-edit"></i>
                                 </a>
 
-                                <a href="{{ route('shop.delete', $shop->shop_id) }}"
+                                <a href="{{ route('shop.delete', [$company_id, $shop->shop_id]) }}"
                                     onclick="return confirm('Are you sure, you want to delete this client?')"><i
                                         data-toggle="tooltip" data-placement="bottom" title="Delete"
                                         class="fas fa-trash-alt"></i></a>
                                 @if($shop->shop_active)
-                                    <a href="{{ route('shop.make_inactive', $shop->shop_id) }}"
+                                    <a href="{{ route('shop.make_inactive', [$company_id, $shop->shop_id]) }}"
                                         onclick="return confirm('Are you sure, you want inactive?')"><i
                                             data-toggle="tooltip" data-placement="bottom" title="make inactive"
                                             class="fas fa-toggle-on"></i></a>
                                 @else
-                                    <a href="{{ route('shop.make_active', $shop->shop_id) }}"
+                                    <a href="{{ route('shop.make_active', [$company_id, $shop->shop_id]) }}"
                                         onclick="return confirm('Are you sure, you want active?')"><i
                                             data-toggle="tooltip" data-placement="bottom" title="make active"
                                             class="fas fa-toggle-off"></i></a>
