@@ -10,7 +10,7 @@ use App\Models\Company;
 
 use DB; 
 class ProductController extends Controller
-{
+{ 
     public function index($company_id){
         $company = Company::where('company_id', $company_id)->first();
         $products = Product::where('ref_company_id', $company_id)->get();
@@ -105,7 +105,7 @@ class ProductController extends Controller
         $productImages = $product->productImage;
         foreach($productImages AS $productImage){
             if(file_exists($productImage->attachment_url)){
-                @unlink($productImage->attachment_url);
+                unlink($productImage->attachment_url);
             }
         }
         $productImagesRemoved = $product->productImage()->delete();

@@ -9,6 +9,7 @@ use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CompanyManageController;
+use App\Http\Controllers\ShopManageController;
 
 Route::get('/', function () { 
     return view('welcome'); 
@@ -25,7 +26,7 @@ Route::post('/gallery/{gallery_id}/image/store', [GalleryController::class, 'sto
 Route::get('/gallery/image/{image_id}/show', [GalleryController::class, 'image_show'])->name('gallery.image.show');
 Route::post('/gallery/image/{image_id}/update', [GalleryController::class, 'image_update'])->name('gallery.image.update');
 Route::post('/gallery/image/{image_id}/delete', [GalleryController::class, 'image_delete'])->name('gallery.image.delete');
-
+ 
 // client
 Route::get('/client', [ClientController::class, 'index'])->name('client.index');
 Route::get('/client/create', [ClientController::class, 'create'])->name('client.create');
@@ -82,8 +83,18 @@ Route::get('/company/{company_id}/shop/{shop_id}/products', [CompanyManageContro
 Route::get('/company/{company_id}/category/{category_id}/products', [CompanyManageController::class, 'product_list_by_category'])->name('product_list_by_category');
 Route::get('/company/{company_id}/products', [CompanyManageController::class, 'product_list_by_company'])->name('product_list_by_company');
 
+// shop_control
+Route::get('/shop/{shop_id}/index', [ShopManageController::class, 'index'])->name('shop.manage.index');
+Route::get('/shop/{shop_id}/product', [ShopManageController::class, 'product'])->name('shop.manage.product');
+Route::post('/shop/{shop_id}/product/search', [ShopManageController::class, 'search_product'])->name('shop.manage.search.product');
+Route::get('/shop/{shop_id}/category/{category_id}/products', [ShopManageController::class, 'product_list_by_category'])->name('shop.manage.product_list_by_category');
+Route::get('/shop/{shop_id}/product/{product_id}/show', [ShopManageController::class, 'show'])->name('shop.manage.product.show');
+Route::get('/shop/{shop_id}/product/{product_id}/sale', [ShopManageController::class, 'sale'])->name('shop.manage.product.sale');
+Route::post('/shop/{shop_id}/product/{product_id}/sale', [ShopManageController::class, 'sale_confirm'])->name('shop.manage.product.sale');
+
 
  
 
 
 
+ 

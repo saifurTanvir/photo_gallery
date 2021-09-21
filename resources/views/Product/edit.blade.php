@@ -112,6 +112,12 @@
                             placeholder="Dhaka">
                     </div>
 
+                    <div class="form-group">
+                        <label for="product_stock">Product Stock</label>
+                        <input type="number" name="product_stock" value="{{ $product->product_stock }}"
+                            class="form-control" placeholder="15">
+                    </div>
+
                 </div>
 
                 <div class="col">

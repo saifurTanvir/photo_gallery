@@ -43,16 +43,18 @@
         <div class="row p-3">
             <div class="col-12">
                 <img src="{{ asset($image->image_path) }}" alt="image" class="img-thumbnail mt-4">
-                <div class="row p-3">
-                    <div class="col"> 
-                        <form action="{{route('gallery.image.update', $image->image_id)}}" method="post" enctype="multipart/form-data" class="form-inline">
+                <div class="row p-3 d-flex">
+                    <div class="col">
+                        <form action="{{ route('gallery.image.update', $image->image_id) }}"
+                            method="post" enctype="multipart/form-data" class="form-inline">
                             @csrf
                             <input type="file" name="file">
                             <button class="btn btn-info" type="submit">Update</button>
                         </form>
                     </div>
                     <div class="col">
-                        <form action="{{route('gallery.image.delete', $image->image_id)}}" method="post" enctype="multipart/form-data" class="form-inline">
+                        <form action="{{ route('gallery.image.delete', $image->image_id) }}"
+                            method="post" enctype="multipart/form-data" class="float-right">
                             @csrf
                             <button class="btn btn-danger" type="submit">Delete</button>
                         </form>

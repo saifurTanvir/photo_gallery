@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company; 
-use App\Models\Shop; 
 use App\Models\Product; 
-use App\Models\Category; 
-use App\Models\Subcategory; 
 
 class CompanyManageController extends Controller
 {
@@ -18,7 +15,7 @@ class CompanyManageController extends Controller
     public function product_list_by_shop_name($company_id, $shop_id){
         $company = Company::where('company_id', $company_id)->first();
         $products = Product::Where('ref_shop_id', $shop_id)->where('ref_company_id', $company_id)->get();
-
+ 
         return view('product.index', compact('products', 'company'));
     }
 

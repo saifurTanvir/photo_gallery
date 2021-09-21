@@ -26,8 +26,10 @@ class ProductFactory extends Factory
     public function definition()
     {
         $category_ids = Category::pluck('category_id')->toArray();
-        $shop_ids = Shop::pluck('shop_id')->toArray();
         $company_ids = Company::pluck('company_id')->toArray();
+        $company_id = $this->faker->randomElement($company_ids);
+        $shop_id = Shop::where('ref_company_id', $company_id)->pluck('shop_id')->first();
+
         return [
             'product_name' => $this->faker->name(),
             'product_detail' => $this->faker->realText($maxNbChars = 200, $indexSize = 2),
@@ -45,8 +47,8 @@ class ProductFactory extends Factory
             'product_expire_date' => $this->faker->dateTimeBetween($startDate = 'now', $endDate = '30 years', $timezone = null),
             'product_manufacturer_name' => $this->faker->company(),
             'product_manufacture_place' => $this->faker->city(),
-            'ref_shop_id' =>  $this->faker->randomElement($shop_ids),
-            'ref_company_id' =>  $this->faker->randomElement($company_ids),
+            'ref_shop_id' =>  $shop_id,
+            'ref_company_id' => $company_id,
             'product_active' => Arr::random([0, 1])
         ];
     }
